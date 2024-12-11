@@ -44,3 +44,25 @@ book:
   use:
       text: "You place the book gently on the floor."
       action: "drop"
+wand:
+  type: [Weapon]
+  description: "A magical wand"
+  use:
+      text: "You wave the wand."
+      action: "null"
+  min-damage: 5
+  max-damage: 15
+
+healing_potion:
+  type: [Healing]
+  description: "A potion that heals you."
+  use:
+      text: "You drink the healing potion. You feel better."
+      action: "use"
+
+golden_key:
+  type: [Key]
+  description: "A key that unlocks special doors."
+  use:
+      text: "You hold the golden key in your hand."
+      action: "null"
