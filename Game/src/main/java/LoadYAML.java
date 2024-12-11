@@ -36,7 +36,7 @@ public class LoadYAML {
         return rooms;
     }
 
-    public HashMap<String,Item> loadItems() {
+    public HashMap<String, Item> loadItems() {
         data = load("items.yaml");
         for (String name : data.keySet()) {
             Map<String, Object> properties = (HashMap) data.get(name);
@@ -45,10 +45,25 @@ public class LoadYAML {
             String usetext = (String) use.get("text");
             String useaction = (String) use.get("action");
             List<String> types = (ArrayList) properties.get("type");
-            items.put(name, new Item(name, types, desc, usetext, useaction));
+    
+            // Check item type and instantiate accordingly
+            Item item = null;
+            if (types.contains("Weapon")) {
+                int minDamage = (int) properties.get("min-damage");
+                int maxDamage = (int) properties.get("max-damage");
+                item = new Weapon(name, types, desc, usetext, useaction, minDamage, maxDamage);
+            } else if (types.contains("Animal")) {
+                int minDamage = (int) properties.get("min-damage");
+                int maxDamage = (int) properties.get("max-damage");
+                item = new Animal(name, types, desc, usetext, useaction, minDamage, maxDamage);
+            } else {
+                item = new Item(name, types, desc, usetext, useaction);
+            }
+            items.put(name, item);
         }
         return items;
     }
+    
 
     public HashMap<String, Object> load(String fname) {
             Yaml yaml = new Yaml();
