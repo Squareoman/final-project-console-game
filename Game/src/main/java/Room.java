@@ -8,12 +8,14 @@ import java.util.Map;
 public class Room {
     public String name;
     public List<Item> contents;
-    public Map<String,String> doors;
+    public Map<String, String> doors;
+    public Map<String, Boolean> lockedDoors;  // Map to track locked doors
 
-    public Room(String name, List<Item> contents, Map<String, String> doors) {
+    public Room(String name, List<Item> contents, Map<String, String> doors, Map<String, Boolean> lockedDoors) {
         this.name = name;
         this.contents = contents;
         this.doors = doors;
+        this.lockedDoors = lockedDoors;
     }
 
     public String toString() {
