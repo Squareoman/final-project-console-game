@@ -2,7 +2,24 @@
   contents: [poison frog]
   doors:
       green: "Closet"
+      red: "Library"  # Add a door to the Library room
+
 "Closet":
   contents: [broom, mop, bucket, poster]
   doors:
       green: "Starting Room"
+
+"Library":
+  contents: [book]
+  doors:
+      green: "Starting Room"
+      red: "Secret Room"  # Add a door to the Secret Room
+  lockedDoors:
+      red: true  # The door to the Secret Room is locked
+
+"Secret Room":
+  contents: [golden_key]
+  doors:
+      red: "Library"
+  lockedDoors:
+      red: false  # The door to the Library room is no longer locked
