@@ -12,22 +12,21 @@ public class GameState {
     Map<String, Room> rooms; // global list of rooms
     Map<String, Item> items; // global list of known items
 
-    // update state and check for winning condition
     public String update() {
-        if (room.contents.contains(items.get("poison frog")) &&
-            room.contents.contains(items.get("book")) ){
+        // Check if the player is in the Secret Room and has the golden key
+        if (room.name.equals("Secret Room") && inventory.contains(items.get("golden_key"))) {
             finished = true;
-            String finaltext =  """
-                                The frog hops slowly over to the book and hops on top. Suddenly the book and the
-                                frog begin to glow. The room starts spinning and you shut your eyes out of fear.
-                                When you open them, you're back in the original basement room! When you open the
-                                door, you find yourself back in the modern-day library. As you leave and the door
-                                swings shut, you think you hear a faint \"ribbet\"....
-                                """;
-            return finaltext;
+            String finalText = """
+                               You use the golden key to unlock a mysterious chest. Inside, you find a rare treasure.
+                               With the treasure in hand, you return to the library, ready to leave the adventure behind.
+                               You win!
+                               """;
+            return finalText;
         }
         return "";
     }
+    
+    
 
     public GameState(String name) {
         this.name = name;
