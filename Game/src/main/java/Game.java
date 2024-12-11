@@ -61,10 +61,20 @@ public class Game {
                     printSlow("You also notice that this room has doors:");
                     for (String c : state.room.doors.keySet()) printSlow(c);
                     break;
-                case 2:
+                case 2: // Move to a new room
                     printSlow("Which door?");
                     String door = myObj.nextLine();
                     try {
+                        if (state.room.lockedDoors.get(door) != null && state.room.lockedDoors.get(door)) {
+                            if (state.inventory.contains(state.items.get("golden_key"))) {
+                                printSlow("You use the golden key to unlock the door.");
+                                state.room.lockedDoors.put(door, false); // Unlock the door
+                            } else {
+                                printSlow("The door is locked. You need a key to open it.");
+                                break;
+                            }
+                        }
+                
                         String rtemp = state.room.doors.get(door);
                         state.room = state.rooms.get(rtemp);
                         printSlow("You step through the " + door + " door. You realize this room is the " + state.room.name + ".");
